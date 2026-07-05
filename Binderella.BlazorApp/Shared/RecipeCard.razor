@@ -1,0 +1,75 @@
+@* This is the ONE template used everywhere a recipe is displayed or printed.
+   Change the layout here, and every recipe -- old and new -- updates automatically. *@
+@inject LocalizationService Loc
+@implements IDisposable
+
+<div class="recipe-card" style="--recipe-font: @Recipe.FontFamily;">
+    <div class="binder-holes">
+        <span></span><span></span><span></span>
+    </div>
+
+    <div class="recipe-header">
+        <div class="recipe-image">
+            @if (Recipe.ImageData != null)
+            {
+                <img src="data:@Recipe.ImageContentType;base64,@Convert.ToBase64String(Recipe.ImageData)" alt="@Recipe.Title" />
+            }
+            else
+            {
+                <div class="recipe-image-placeholder" aria-hidden="true">🍽️</div>
+            }
+        </div>
+        <div class="recipe-title-block">
+            <h1>@Recipe.Title</h1>
+            @if (!string.IsNullOrWhiteSpace(Recipe.ChefUrl))
+            {
+                <p class="chef-name"><a href="@Recipe.ChefUrl" target="_blank" rel="noopener">@Recipe.ChefName</a></p>
+            }
+            else if (!string.IsNullOrWhiteSpace(Recipe.ChefName))
+            {
+                <p class="chef-name">@Recipe.ChefName</p>
+            }
+        </div>
+    </div>
+
+    <div class="recipe-body">
+        <div class="ingredients">
+            <h2>@Loc.T("Ingredients")</h2>
+            <ul>
+                @foreach (var ing in Recipe.Ingredients.OrderBy(i => i.SortOrder))
+                {
+                    <li><span class="qty">@ing.Quantity</span> @ing.Name</li>
+                }
+            </ul>
+        </div>
+        <div class="steps">
+            <h2>@Loc.T("Recipe")</h2>
+            <ol>
+                @foreach (var step in Recipe.Steps.OrderBy(s => s.SortOrder))
+                {
+                    <li>@step.Description</li>
+                }
+            </ol>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Recipe.ClosingLine))
+    {
+        <p class="closing-line">@Recipe.ClosingLine</p>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public Recipe Recipe { get; set; } = null!;
+
+    protected override void OnInitialized()
+    {
+        Loc.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,69 @@
+@page "/recipe/{Id:int}"
+@inject RecipeContext Db
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+@inject LocalizationService Loc
+@implements IDisposable
+
+<PageTitle>@(recipe?.Title ?? Loc.T("AppName"))</PageTitle>
+
+@if (recipe == null)
+{
+    <p>@Loc.T("Loading")</p>
+}
+else
+{
+    <div class="view-actions no-print">
+        <a href="/">@Loc.T("Back")</a>
+        <div class="view-actions-right">
+            <button class="btn-secondary" @onclick="Print">@Loc.T("Print")</button>
+            <a class="btn-secondary" href="@EditUrl">@Loc.T("Edit")</a>
+            <button class="btn-danger" @onclick="ConfirmDelete">@Loc.T("Delete")</button>
+        </div>
+    </div>
+
+    <RecipeCard Recipe="recipe" />
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Recipe? recipe;
+    private string EditUrl => $"/recipe/edit/{Id}";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        recipe = await Db.Recipes
+            .AsNoTracking()
+            .Include(r => r.Ingredients)
+            .Include(r => r.Steps)
+            .FirstOrDefaultAsync(r => r.Id == Id);
+    }
+
+    protected override void OnInitialized()
+    {
+        Loc.OnChange += StateHasChanged;
+    }
+
+    private async Task Print()
+    {
+        await JS.InvokeVoidAsync("window.print");
+    }
+
+    private async Task ConfirmDelete()
+    {
+        var message = string.Format(Loc.T("DeleteConfirm"), recipe!.Title);
+        var confirmed = await JS.InvokeAsync<bool>("confirm", message);
+        if (confirmed)
+        {
+            Db.ChangeTracker.Clear();
+            Db.Recipes.Remove(recipe);
+            await Db.SaveChangesAsync();
+            Nav.NavigateTo("/");
+        }
+    }
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+}

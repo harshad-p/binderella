@@ -1,0 +1,210 @@
+@page "/recipe/new"
+@page "/recipe/edit/{Id:int}"
+@inject RecipeContext Db
+@inject NavigationManager Nav
+@inject LocalizationService Loc
+@implements IDisposable
+
+<PageTitle>@(Id.HasValue ? Loc.T("EditRecipeTitle") : Loc.T("AddRecipeTitle"))</PageTitle>
+
+<h1>@(Id.HasValue ? Loc.T("EditRecipeTitle") : Loc.T("AddRecipeTitle"))</h1>
+
+@if (loading)
+{
+    <p>@Loc.T("Loading")</p>
+}
+else
+{
+    <EditForm Model="recipe" OnValidSubmit="Save">
+        <div class="form-section">
+            <label for="title">@Loc.T("RecipeTitleLabel")</label>
+            <InputText id="title" @bind-Value="recipe.Title" placeholder="@Loc.T("RecipeTitlePlaceholder")" />
+        </div>
+
+        <div class="form-section">
+            <label for="chefName">@Loc.T("ChefNameLabel")</label>
+            <InputText id="chefName" @bind-Value="recipe.ChefName" placeholder="@Loc.T("ChefNamePlaceholder")" />
+        </div>
+
+        <div class="form-section">
+            <label for="chefUrl">@Loc.T("ChefUrlLabel")</label>
+            <InputText id="chefUrl" @bind-Value="recipe.ChefUrl" placeholder="https://youtube.com/..." />
+        </div>
+
+        <div class="form-section">
+            <label for="photo">@Loc.T("PhotoLabel")</label>
+            <InputFile id="photo" OnChange="OnImageSelected" accept="image/*" />
+            @if (imagePreview != null)
+            {
+                <img class="image-preview" src="@imagePreview" alt="Preview" />
+            }
+        </div>
+
+        <div class="form-section">
+            <label for="font">@Loc.T("FontLabel")</label>
+            <select id="font" class="font-select" @bind="recipe.FontFamily">
+                <optgroup label="English">
+                    <option value="'Nunito Sans', sans-serif">Nunito Sans (Clean)</option>
+                    <option value="Georgia, serif">Georgia (Classic)</option>
+                    <option value="'Dancing Script', cursive">Dancing Script (Fancy)</option>
+                </optgroup>
+                <optgroup label="Devanagari / मराठी">
+                    <option value="Mangal, 'Noto Sans Devanagari', sans-serif">Mangal</option>
+                    <option value="'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif">Kohinoor Devanagari</option>
+                    <option value="'Noto Sans Devanagari', sans-serif">Noto Sans Devanagari (Universal)</option>
+                </optgroup>
+            </select>
+            <p class="field-hint">@Loc.T("FontHint")</p>
+            <p class="font-preview" style="font-family: @recipe.FontFamily;">@(string.IsNullOrWhiteSpace(recipe.Title) ? "Aa" : recipe.Title)</p>
+        </div>
+
+        <div class="form-section">
+            <label>@Loc.T("IngredientsLabel")</label>
+            @for (int i = 0; i < ingredients.Count; i++)
+            {
+                var index = i;
+                <div class="dynamic-row">
+                    <input class="qty-input" placeholder="@Loc.T("AmountPlaceholder")" @bind="ingredients[index].Quantity" />
+                    <input class="name-input" placeholder="@Loc.T("IngredientNamePlaceholder")" @bind="ingredients[index].Name" />
+                    <button type="button" class="btn-remove" title="Remove this ingredient" @onclick="() => ingredients.RemoveAt(index)">✕</button>
+                </div>
+            }
+            <button type="button" class="btn-secondary" @onclick="() => ingredients.Add(new RecipeIngredient())">@Loc.T("AddIngredient")</button>
+        </div>
+
+        <div class="form-section">
+            <label>@Loc.T("StepsLabel")</label>
+            @for (int i = 0; i < steps.Count; i++)
+            {
+                var index = i;
+                <div class="dynamic-row">
+                    <span class="step-number">@(index + 1).</span>
+                    <textarea class="step-input" placeholder="@Loc.T("StepPlaceholder")" @bind="steps[index].Description"></textarea>
+                    <button type="button" class="btn-remove" title="Remove this step" @onclick="() => steps.RemoveAt(index)">✕</button>
+                </div>
+            }
+            <button type="button" class="btn-secondary" @onclick="() => steps.Add(new RecipeStep())">@Loc.T("AddStep")</button>
+        </div>
+
+        <div class="form-section">
+            <label for="closing">@Loc.T("ClosingLineLabel")</label>
+            <InputText id="closing" @bind-Value="recipe.ClosingLine" placeholder="@Loc.T("ClosingLinePlaceholder")" />
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">@Loc.T("Save")</button>
+            <a class="btn-text" href="@CancelUrl">@Loc.T("Cancel")</a>
+        </div>
+    </EditForm>
+}
+
+@code {
+    [Parameter] public int? Id { get; set; }
+
+    private string CancelUrl => Id.HasValue ? $"/recipe/{Id}" : "/";
+    private Recipe recipe = new();
+    private List<RecipeIngredient> ingredients = new();
+    private List<RecipeStep> steps = new();
+    private string? imagePreview;
+    private byte[]? newImageData;
+    private string? newImageContentType;
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Db.ChangeTracker.Clear();
+
+        if (Id.HasValue)
+        {
+            var existing = await Db.Recipes
+                .AsNoTracking()
+                .Include(r => r.Ingredients)
+                .Include(r => r.Steps)
+                .FirstOrDefaultAsync(r => r.Id == Id.Value);
+
+            if (existing != null)
+            {
+                recipe = existing;
+                ingredients = existing.Ingredients.OrderBy(i => i.SortOrder).ToList();
+                steps = existing.Steps.OrderBy(s => s.SortOrder).ToList();
+                if (existing.ImageData != null)
+                {
+                    imagePreview = $"data:{existing.ImageContentType};base64,{Convert.ToBase64String(existing.ImageData)}";
+                }
+            }
+        }
+
+        if (!ingredients.Any()) ingredients.Add(new RecipeIngredient());
+        if (!steps.Any()) steps.Add(new RecipeStep());
+
+        loading = false;
+        Loc.OnChange += StateHasChanged;
+    }
+
+    private async Task OnImageSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file == null) return;
+
+        using var stream = file.OpenReadStream(maxAllowedSize: 5 * 1024 * 1024);
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+        newImageData = ms.ToArray();
+        newImageContentType = file.ContentType;
+        imagePreview = $"data:{newImageContentType};base64,{Convert.ToBase64String(newImageData)}";
+    }
+
+    private async Task Save()
+    {
+        // The DbContext is scoped to the whole Blazor circuit (session), so entities
+        // viewed on other pages (e.g. ViewRecipe) may still be tracked here. Clear
+        // the tracker before attaching this recipe to avoid a duplicate-key conflict.
+        Db.ChangeTracker.Clear();
+
+        for (int i = 0; i < ingredients.Count; i++) ingredients[i].SortOrder = i;
+        for (int i = 0; i < steps.Count; i++) steps[i].SortOrder = i;
+
+        var cleanIngredients = ingredients
+            .Where(x => !string.IsNullOrWhiteSpace(x.Name))
+            .Select(x => new RecipeIngredient { Quantity = x.Quantity, Name = x.Name, SortOrder = x.SortOrder })
+            .ToList();
+
+        var cleanSteps = steps
+            .Where(x => !string.IsNullOrWhiteSpace(x.Description))
+            .Select(x => new RecipeStep { Description = x.Description, SortOrder = x.SortOrder })
+            .ToList();
+
+        if (newImageData != null)
+        {
+            recipe.ImageData = newImageData;
+            recipe.ImageContentType = newImageContentType;
+        }
+
+        if (Id.HasValue)
+        {
+            var oldIngredients = await Db.Ingredients.Where(i => i.RecipeId == Id.Value).ToListAsync();
+            var oldSteps = await Db.Steps.Where(s => s.RecipeId == Id.Value).ToListAsync();
+            Db.Ingredients.RemoveRange(oldIngredients);
+            Db.Steps.RemoveRange(oldSteps);
+
+            recipe.Ingredients = cleanIngredients;
+            recipe.Steps = cleanSteps;
+            Db.Recipes.Update(recipe);
+        }
+        else
+        {
+            recipe.DateAdded = DateTime.Now;
+            recipe.Ingredients = cleanIngredients;
+            recipe.Steps = cleanSteps;
+            Db.Recipes.Add(recipe);
+        }
+
+        await Db.SaveChangesAsync();
+        Nav.NavigateTo($"/recipe/{recipe.Id}");
+    }
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+}

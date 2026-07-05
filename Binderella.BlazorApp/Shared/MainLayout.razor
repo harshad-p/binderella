@@ -1,0 +1,33 @@
+@inherits LayoutComponentBase
+@inject LocalizationService Loc
+@implements IDisposable
+
+<div class="page">
+    <header class="top-bar">
+        <a href="/" class="brand">📖 @Loc.T("AppName")</a>
+        <select class="lang-select" value="@Loc.Language" @onchange="OnLanguageChanged" aria-label="Language">
+            <option value="en">English</option>
+            <option value="mr">मराठी</option>
+        </select>
+    </header>
+    <main class="content">
+        @Body
+    </main>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Loc.OnChange += StateHasChanged;
+    }
+
+    private void OnLanguageChanged(ChangeEventArgs e)
+    {
+        Loc.Language = e.Value?.ToString() ?? "en";
+    }
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+}

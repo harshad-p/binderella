@@ -1,0 +1,68 @@
+@page "/"
+@inject RecipeContext Db
+@inject NavigationManager Nav
+@inject LocalizationService Loc
+@implements IDisposable
+
+<PageTitle>@Loc.T("AppName")</PageTitle>
+
+<div class="index-header">
+    <h1>@Loc.T("MyRecipes")</h1>
+    <a class="btn-primary" href="/recipe/new">@Loc.T("AddNewRecipe")</a>
+</div>
+
+<input class="search-box" placeholder="@Loc.T("SearchPlaceholder")" @bind="searchTerm" @bind:event="oninput" />
+
+@if (loading)
+{
+    <p>@Loc.T("Loading")</p>
+}
+else if (!recipes.Any())
+{
+    <p class="empty-state">@Loc.T("EmptyState")</p>
+}
+else
+{
+    <div class="recipe-grid">
+        @foreach (var r in FilteredRecipes)
+        {
+            <div class="recipe-tile" @onclick="() => GoToRecipe(r.Id)">
+                @if (r.ImageData != null)
+                {
+                    <img src="data:@r.ImageContentType;base64,@Convert.ToBase64String(r.ImageData)" alt="@r.Title" />
+                }
+                else
+                {
+                    <div class="tile-placeholder" aria-hidden="true">🍽️</div>
+                }
+                <div class="tile-title">@r.Title</div>
+                <div class="tile-chef">@Loc.T("By") @r.ChefName</div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Recipe> recipes = new();
+    private string searchTerm = "";
+    private bool loading = true;
+
+    private IEnumerable<Recipe> FilteredRecipes =>
+        string.IsNullOrWhiteSpace(searchTerm)
+            ? recipes
+            : recipes.Where(r => r.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipes = await Db.Recipes.OrderByDescending(r => r.DateAdded).ToListAsync();
+        loading = false;
+        Loc.OnChange += StateHasChanged;
+    }
+
+    private void GoToRecipe(int id) => Nav.NavigateTo($"/recipe/{id}");
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+}
