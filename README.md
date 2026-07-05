@@ -6,7 +6,11 @@ Built as a hackathon project, in C# and Blazor.
 
 ## Why
 
-Recipes scribbled from YouTube or TV onto scrap paper are easy to lose, hard to search, and only get more fragile with time. Binderella gives them a permanent home — one you can search, share, and print onto a fresh A5 page for the binder, without ever manually reformatting a recipe again.
+Recipes scribbled from YouTube or TV onto scrap paper are easy to lose, hard to search, and only get more fragile with time. Old recipe binders turn yellow, pages come loose, paper wears out, and eventually tears or gets lost entirely.
+
+Word documents seemed like a fix, but they come with their own problems: formatting one nicely needs real proficiency in Word, and the moment you come up with a better design, every single recipe you already wrote has to be manually re-edited to match.
+
+Binderella gives recipes a permanent home — one you can search, share, and print onto a fresh A5 page for the binder, without ever manually reformatting a recipe again.
 
 ## Features
 
