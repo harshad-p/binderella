@@ -35,8 +35,8 @@ Binderella gives recipes a permanent home — one you can search, share, and pri
 
 ### Run locally
 ```bash
-git clone https://github.com/<your-username>/recipe-binderella.git
-cd recipe-binderella
+git clone https://github.com/<your-username>/binderella.git
+cd binderella
 dotnet restore
 dotnet run
 ```
