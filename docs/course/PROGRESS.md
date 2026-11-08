@@ -1,24 +1,28 @@
 # Current Position
 
-Repository foundation
+Backend foundation
 
 # Completed
 
 - [x] Legacy prototype preserved in Git history
 - [x] Clean repository structure created
+- [x] Binderella solution created
+- [x] ASP.NET Core API project created
+- [x] Backend integration-test project created
+- [x] Health endpoint configured
+- [x] Backend baseline builds and tests successfully
 
 # Current Task
 
-Wait for the first guided lesson and implementation task from ChatGPT.
+Wait for ChatGPT to define the recipe API domain and first backend
+lesson.
 
 # Not Started
 
-- Backend solution
-- ASP.NET Core API
 - Database
 - Blazor frontend
 - Angular frontend
 - React/Next.js frontend
 - Template management
 - PDF generation
-- Automated tests
+- Backend integration test cases
