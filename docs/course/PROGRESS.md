@@ -1,6 +1,6 @@
 # Current Position
 
-Backend foundation
+Recipe API contract
 
 # Completed
 
@@ -11,11 +11,16 @@ Backend foundation
 - [x] Backend integration-test project created
 - [x] Health endpoint configured
 - [x] Backend baseline builds and tests successfully
+- [x] Recipe API contract documented
+- [x] Request DTOs created
+- [x] Response DTOs created
+- [x] Recipe source types defined
+- [x] Closing-message behavior defined
+- [x] Enum values configured as JSON strings
 
 # Current Task
 
-Wait for ChatGPT to define the recipe API domain and first backend
-lesson.
+Wait for ChatGPT to teach and define the first recipe API vertical slice.
 
 # Not Started
 

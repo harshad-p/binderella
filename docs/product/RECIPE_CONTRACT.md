@@ -1,0 +1,141 @@
+# MVP recipe API contract
+
+This document defines the approved recipe data contract. It does not introduce
+endpoints or persistence. C# types live in `Binderella.Api.Contracts.Recipes`
+and use sealed classes with explicit properties. JSON property names are camelCase.
+
+## Contract types
+
+| Type | Fields |
+| --- | --- |
+| `CreateRecipeRequest`, `UpdateRecipeRequest` | `string Title`, `string? ImageUrl`, `string LanguageCode`, `RecipeSourceRequest? Source`, `List<RecipeIngredientRequest> Ingredients`, `List<RecipeStepRequest> Steps`, required `RecipeClosingMessageRequest ClosingMessage` |
+| `RecipeResponse` | The same recipe fields using response types, plus `Guid Id`, `DateTimeOffset CreatedAtUtc`, `DateTimeOffset UpdatedAtUtc` |
+| `RecipeSourceRequest`, `RecipeSourceResponse` | `RecipeSourceType Type`, `string Name`, `string? Url` |
+| `RecipeIngredientRequest` | `string Name`, `string Quantity`, `int Position` |
+| `RecipeIngredientResponse` | Ingredient fields plus `Guid Id` |
+| `RecipeStepRequest` | `string Instruction`, `int Position` |
+| `RecipeStepResponse` | Step fields plus `Guid Id` |
+| `RecipeClosingMessageRequest`, `RecipeClosingMessageResponse` | `RecipeClosingMessageType Type`, `string? CustomText` |
+
+Create and update share the same required fields; update describes a complete
+recipe rather than a partial patch. IDs and UTC timestamps are response-only
+fields. Ingredient quantities remain text, such as `2 tbsp` or `to taste`.
+Positions specify ingredient and step ordering.
+
+`RecipeSourceType` values are `Chef`, `YouTubeChannel`, `WebPage`, and `Other`.
+`RecipeClosingMessageType` values are `EnjoyYourMeal`, `RecipeReady`, and `Custom`.
+ASP.NET Core controller and HTTP JSON serialization use enum string names, such
+as `"YouTubeChannel"` and `"EnjoyYourMeal"`; integer enum values are disabled.
+
+## Validation
+
+The following unconditional rules are expressed using ordinary data annotations
+on request DTOs. They are validation metadata; endpoint validation will be wired
+and tested when endpoints exist.
+
+| Field | Rule |
+| --- | --- |
+| Title | Required; maximum 200 characters |
+| ImageUrl | Optional |
+| LanguageCode | Required; identifies the language of the stored recipe content |
+| Source | Optional |
+| Source.Name | Required when a source is supplied |
+| Source.Url | Optional |
+| Source.Type | Must be a defined `RecipeSourceType` value |
+| Ingredients | At least one ingredient required |
+| Ingredient.Name | Required |
+| Ingredient.Quantity | Required |
+| Ingredient.Position | Greater than zero |
+| Steps | At least one step required |
+| Step.Instruction | Required |
+| Step.Position | Greater than zero |
+| ClosingMessage | Required |
+| ClosingMessage.Type | Must be a defined `RecipeClosingMessageType` value |
+| ClosingMessage.CustomText | Maximum 300 characters |
+
+Required strings must not be empty or whitespace. Request collections initialize
+to empty lists and normalize assigned null collections to empty lists. Omitted,
+empty, or explicitly null collections therefore fail the minimum-count rule
+without leaving a null collection reference.
+
+The following rules are part of the approved contract, but their custom
+implementation is deferred to the validation lesson:
+
+- Supplied `ImageUrl` and `Source.Url` must be absolute HTTP or HTTPS URLs.
+  `[Url]` is deliberately omitted because it does not guarantee this scheme restriction.
+- `CustomText` is required and must not be empty or whitespace when closing-message
+  type is `Custom`.
+- `CustomText` must not be supplied for `EnjoyYourMeal` or `RecipeReady`; omit it
+  or use null. An empty string is still supplied text.
+
+No additional language-code format, position uniqueness, or contiguous-position
+validation is defined by this contract.
+
+## Closing-message behavior
+
+Store the closing-message type and, only for `Custom`, its `CustomText`.
+Render built-in closing text later according to the selected output language:
+
+- `EnjoyYourMeal`: `Bon appétit!`, `Guten Appetit!`, or the appropriate Hindi
+  or Marathi equivalent.
+- `RecipeReady`: a localized sentence using the recipe title, such as
+  `Chicken Masala is ready.`
+- `Custom`: the stored `CustomText`.
+
+Do not store a localized built-in sentence in the recipe. Rendering a built-in
+closing message in another language does not translate the recipe content.
+Custom text is rendered as stored.
+
+## Example create request
+
+```json
+{
+  "title": "Chicken Masala",
+  "imageUrl": "https://example.com/images/chicken-masala.jpg",
+  "languageCode": "en",
+  "source": {
+    "type": "YouTubeChannel",
+    "name": "Example Kitchen",
+    "url": "https://www.youtube.com/@examplekitchen"
+  },
+  "ingredients": [
+    {
+      "name": "Chicken",
+      "quantity": "500 g",
+      "position": 1
+    },
+    {
+      "name": "Masala spice mix",
+      "quantity": "2 tbsp",
+      "position": 2
+    }
+  ],
+  "steps": [
+    {
+      "instruction": "Coat the chicken with the masala spice mix.",
+      "position": 1
+    },
+    {
+      "instruction": "Cook until the chicken is cooked through.",
+      "position": 2
+    }
+  ],
+  "closingMessage": {
+    "type": "EnjoyYourMeal"
+  }
+}
+```
+
+## Explicit exclusions
+
+- Templates
+- PDF settings
+- Image uploads
+- Automatic translation
+- Multiple translations of one recipe
+- Nutrition
+- Categories and tags
+- Serving-size scaling
+- User accounts
+- Recipe extraction from websites or YouTube
+- Preparation and cooking times
