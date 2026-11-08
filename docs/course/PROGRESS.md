@@ -1,6 +1,6 @@
 # Current Position
 
-Recipe API contract
+First Recipe API vertical slice
 
 # Completed
 
@@ -17,10 +17,15 @@ Recipe API contract
 - [x] Recipe source types defined
 - [x] Closing-message behavior defined
 - [x] Enum values configured as JSON strings
+- [x] POST /api/recipes implemented
+- [x] GET /api/recipes/{id} implemented
+- [x] Temporary in-memory recipe store implemented
+- [x] First Recipe API integration tests added
 
 # Current Task
 
-Wait for ChatGPT to teach and define the first recipe API vertical slice.
+Wait for ChatGPT to review the first HTTP vertical slice and introduce
+persistent storage.
 
 # Not Started
 
@@ -30,4 +35,3 @@ Wait for ChatGPT to teach and define the first recipe API vertical slice.
 - React/Next.js frontend
 - Template management
 - PDF generation
-- Backend integration test cases
