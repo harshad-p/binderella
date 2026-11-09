@@ -1,14 +1,16 @@
 # Angular, React, and Next.js: 21-Day Production Crash Course
 
-## Course Goal
+## Course Foundation
+
+### CF-S1 — Course Goal
 
 Complete a comprehensive frontend crash course in exactly three weeks:
 
-- Week 1: Angular — Days 1–7
-- Week 2: React — Days 8–14
-- Week 3: Next.js and production engineering — Days 15–21
+- Week 1: Angular — Days 1–7.
+- Week 2: React — Days 8–14.
+- Week 3: Next.js and production engineering — Days 15–21.
 
-This course should prepare the learner to:
+The course should prepare the learner to:
 
 - Contribute to an existing production Angular, React, or Next.js codebase.
 - Build complete frontend features independently.
@@ -21,7 +23,7 @@ This course should prepare the learner to:
 - Answer framework-specific and frontend-architecture interview questions.
 - Compare Angular, React, Next.js, and Blazor using practical examples.
 
-## Time Commitment
+### CF-S2 — Time Commitment
 
 - 21 actual instructional days.
 - No placeholder, catch-up, or rest days are counted as course days.
@@ -33,7 +35,7 @@ This course should prepare the learner to:
   - Testing or debugging.
   - Interview preparation.
 
-## Assumed Knowledge
+### CF-S3 — Assumed Knowledge
 
 The learner already knows:
 
@@ -44,10 +46,13 @@ The learner already knows:
 - General application architecture.
 - REST APIs and SQL basics.
 
-Therefore, the course will not spend significant time on basic programming,
-basic HTML, or elementary CSS.
+Therefore, the course will not spend significant time on:
 
-## Application Strategy
+- Basic programming.
+- Basic HTML.
+- Elementary CSS.
+
+### CF-S4 — Application Strategy
 
 Use one shared ASP.NET Core API and database with three frontend clients:
 
@@ -78,16 +83,18 @@ The chosen application must support enough behavior to practise:
 - Print or PDF output.
 - Unit, integration, and end-to-end tests.
 
-## Backend Boundary
+### CF-S5 — Backend Boundary
 
 The ASP.NET Core API is supporting infrastructure, not the primary subject.
 
 Frontend applications communicate with it through HTTP and JSON:
 
+```text
 Angular / React / Next.js
 → ASP.NET Core API
 → EF Core
 → Database
+```
 
 The frontend curriculum covers:
 
@@ -99,10 +106,9 @@ The frontend curriculum covers:
 - Pagination and filtering.
 - Error handling.
 
-Deep ASP.NET Core architecture and EF Core internals are outside the main
-course unless they directly affect frontend development.
+Deep ASP.NET Core architecture and EF Core internals are outside the main course unless they directly affect frontend development.
 
-## Teaching Workflow
+### CF-S6 — Teaching Workflow
 
 ChatGPT is responsible for:
 
@@ -123,44 +129,69 @@ Codex is responsible for:
 - Running builds and tests.
 - Reporting failures and changed files.
 
-Codex must not generate an entire lesson before the relevant concepts have
-been taught.
+Rule:
+
+- Codex must not generate an entire lesson before the relevant concepts have been taught.
 
 ---
 
 # Week 1 — Angular
 
-## Day 1 — TypeScript Sprint and Angular Project Anatomy
+# Day 1 — TypeScript Sprint and Angular Project Anatomy
 
-### Learn
-
-#### TypeScript
+## W1D1-S1 — TypeScript Type-System Fundamentals
 
 - Type inference.
 - Explicit annotations.
-- Primitive and object types.
-- Interfaces versus type aliases.
-- Union and intersection types.
+- Primitive types.
+- Object types.
+- Union types.
+- Intersection types.
 - Literal types.
-- Optional and readonly properties.
-- Arrays, tuples, and generics.
-- Function and callback types.
+- Strict null checking.
+
+## W1D1-S2 — TypeScript Object Modelling
+
+- Interfaces versus type aliases.
+- Optional properties.
+- Readonly properties.
+- Arrays.
+- Tuples.
+- Generics.
+
+## W1D1-S3 — Functions, Narrowing, and Advanced Type Modelling
+
+- Function types.
+- Callback types.
 - Type narrowing.
 - Discriminated unions.
-- Classes and access modifiers.
-- Abstract classes and interfaces.
-- `Promise<T>` and `async`/`await`.
-- Utility types:
-  - `Partial<T>`.
-  - `Required<T>`.
-  - `Pick<T>`.
-  - `Omit<T>`.
-  - `Record<TKey, TValue>`.
-- Modules, imports, and exports.
-- Strict null checking.
+
+## W1D1-S4 — Classes and Object-Oriented TypeScript
+
+- Classes.
+- Access modifiers.
+- Abstract classes.
+- Interfaces in object-oriented TypeScript.
+
+## W1D1-S5 — Async TypeScript and Utility Types
+
+- `Promise<T>`.
+- `async`.
+- `await`.
+- `Partial<T>`.
+- `Required<T>`.
+- `Pick<T>`.
+- `Omit<T>`.
+- `Record<TKey, TValue>`.
+
+## W1D1-S6 — Modules and Runtime Reality
+
+- Modules.
+- Imports.
+- Exports.
 - Why TypeScript types do not provide runtime validation.
 
-#### Angular project anatomy
+## W1D1-S7 — Angular CLI and Workspace Anatomy
 
 - Angular CLI.
 - Workspace structure.
@@ -168,17 +199,24 @@ been taught.
 - Lockfiles.
 - `angular.json`.
 - TypeScript configuration.
+
+## W1D1-S8 — Angular Bootstrap and Application Configuration
+
 - Application bootstrap.
 - Standalone components.
 - Application configuration.
+- Environment-specific configuration.
+
+## W1D1-S9 — Running and Tooling
+
 - Development server.
 - Production build.
 - Test command.
 - Angular DevTools.
-- Linting and formatting expectations.
-- Environment-specific configuration.
+- Linting expectations.
+- Formatting expectations.
 
-### Build
+## W1D1-S10 — Day 1 Build
 
 - Scaffold the Angular application.
 - Enable routing.
@@ -195,7 +233,7 @@ been taught.
 - Define TypeScript models for static sample data.
 - Render a small static list.
 
-### Blazor comparison
+## W1D1-S11 — Angular vs Blazor Mental Mapping
 
 - Razor component versus Angular component.
 - `[Parameter]` versus input.
@@ -205,7 +243,7 @@ been taught.
 - Component state versus signals and properties.
 - Lifecycle methods in both frameworks.
 
-### Interview preparation
+## W1D1-S12 — Day 1 Interview Preparation
 
 - TypeScript versus JavaScript.
 - Compile-time type checking versus runtime validation.
@@ -215,7 +253,7 @@ been taught.
 - Standalone component versus NgModule.
 - Why strict TypeScript improves production code.
 
-### Completion check
+## W1D1-S13 — Day 1 Completion Check
 
 The learner can:
 
@@ -227,45 +265,68 @@ The learner can:
 
 ---
 
-## Day 2 — Components, Templates, Directives, and Communication
+# Day 2 — Components, Templates, Directives, and Communication
 
-### Learn
+## W1D2-S1 — Component Fundamentals
 
 - Component metadata.
 - Selectors.
 - Inline versus external templates.
-- Component styles and style encapsulation.
+- Component styles.
+- Style encapsulation.
+
+## W1D2-S2 — Template Binding
+
 - Interpolation.
 - Property binding.
 - Attribute binding.
-- Class and style binding.
+- Class binding.
+- Style binding.
 - Event binding.
 - Two-way binding.
 - Template reference variables.
-- Modern control flow:
-  - `@if`.
-  - `@for`.
-  - `@switch`.
+
+## W1D2-S3 — Modern Template Control Flow
+
+- `@if`.
+- `@for`.
+- `@switch`.
 - Tracking list items correctly.
+
+## W1D2-S4 — Directives and Pipes
+
 - Built-in directives.
 - Custom attribute directives.
 - Pipes.
-- Pure versus impure pipes.
+- Pure pipes.
+- Impure pipes.
+
+## W1D2-S5 — Component Inputs and Outputs
+
 - Inputs.
 - Required inputs.
 - Input transformation awareness.
-- Outputs and custom events.
+- Outputs.
+- Custom events.
 - Parent-to-child communication.
 - Child-to-parent communication.
 - Sibling communication through a parent.
+
+## W1D2-S6 — Content Projection and Composition
+
 - Content projection.
-- Single-slot and multi-slot projection.
-- Component lifecycle hooks.
+- Single-slot projection.
+- Multi-slot projection.
 - Component composition.
-- Smart/feature components versus presentational components.
+
+## W1D2-S7 — Lifecycle and Component Responsibilities
+
+- Component lifecycle hooks.
+- Smart/feature components.
+- Presentational components.
 - Avoiding excessive logic in templates.
 
-### Build
+## W1D2-S8 — Day 2 Build
 
 - List page.
 - Card component.
@@ -281,7 +342,7 @@ The learner can:
 - Custom formatting pipe.
 - Custom highlighting directive.
 
-### Interview preparation
+## W1D2-S9 — Day 2 Interview Preparation
 
 - Component versus directive.
 - Input versus output.
@@ -293,7 +354,7 @@ The learner can:
 - Presentational versus feature components.
 - Why business logic should not live in templates.
 
-### Completion check
+## W1D2-S10 — Day 2 Completion Check
 
 The learner can:
 
@@ -305,40 +366,51 @@ The learner can:
 
 ---
 
-## Day 3 — Routing, Dependency Injection, and Frontend Architecture
+# Day 3 — Routing, Dependency Injection, and Frontend Architecture
 
-### Learn
-
-#### Routing
+## W1D3-S1 — Angular Routing Basics
 
 - Router configuration.
 - Router outlet.
 - Navigation with router links.
 - Active navigation state.
 - Static routes.
+
+## W1D3-S2 — Route State
+
 - Route parameters.
 - Query parameters.
 - Fragments.
+- Route data.
+
+## W1D3-S3 — Nested and Programmatic Routing
+
 - Nested routes.
 - Child routes.
-- Route data.
 - Programmatic navigation.
 - Not-found routes.
+
+## W1D3-S4 — Lazy Loading and Guards
+
 - Lazy-loaded routes.
 - Route-level code splitting.
 - Route guards.
 - `CanActivate`.
 - `CanDeactivate`.
-- Route resolvers and when to avoid them.
+- Route resolvers.
+- When to avoid route resolvers.
 - Why route guards are not a security boundary.
 
-#### Dependency injection
+## W1D3-S5 — Angular Dependency Injection Fundamentals
 
 - Angular services.
 - `@Injectable`.
 - Constructor injection.
 - `inject()`.
 - Injection tokens.
+
+## W1D3-S6 — Provider Scope and Injector Hierarchy
+
 - Root providers.
 - Route-level providers.
 - Component-level providers.
@@ -346,12 +418,13 @@ The learner can:
 - Service instance lifetime.
 - Avoiding accidental multiple service instances.
 
-#### Architecture
+## W1D3-S7 — Frontend Architecture
 
 - Feature-based folder organization.
 - Pages versus reusable components.
 - Services.
-- Models and API contracts.
+- Models.
+- API contracts.
 - Shared UI components.
 - Core application services.
 - Keeping feature boundaries clear.
@@ -359,18 +432,18 @@ The learner can:
 - Container/presentational component separation.
 - Environment configuration.
 
-### Build
+## W1D3-S8 — Day 3 Build
 
 Create routes:
 
-- `/`
-- `/items`
-- `/items/:id`
-- `/items/new`
-- `/items/:id/edit`
-- `/login`
-- `/protected`
-- `**` for not found
+- `/`.
+- `/items`.
+- `/items/:id`.
+- `/items/new`.
+- `/items/:id/edit`.
+- `/login`.
+- `/protected`.
+- `**` for not found.
 
 Also:
 
@@ -383,7 +456,7 @@ Also:
 - Create a placeholder protected-route guard.
 - Add a not-found page.
 
-### Interview preparation
+## W1D3-S9 — Day 3 Interview Preparation
 
 - Route parameter versus query parameter.
 - Lazy loading and why it matters.
@@ -394,7 +467,7 @@ Also:
 - Why component-level providers create separate instances.
 - Feature folders versus technical-layer folders.
 
-### Completion check
+## W1D3-S10 — Day 3 Completion Check
 
 The learner can:
 
@@ -406,44 +479,63 @@ The learner can:
 
 ---
 
-## Day 4 — HTTP, RxJS, Server State, and Error Handling
+# Day 4 — HTTP, RxJS, Server State, and Error Handling
 
-### Learn
-
-#### HTTP
+## W1D4-S1 — Angular HTTP Fundamentals
 
 - Configuring `HttpClient`.
-- Typed request and response objects.
-- GET, POST, PUT, PATCH, and DELETE.
+- Typed request objects.
+- Typed response objects.
+- GET.
+- POST.
+- PUT.
+- PATCH.
+- DELETE.
+
+## W1D4-S2 — HTTP Request Construction
+
 - Query-string construction.
 - Headers.
 - Request options.
 - JSON serialization.
 - DTO mapping.
+
+## W1D4-S3 — Backend Communication Concerns
+
 - Development proxy configuration.
 - CORS.
 - HTTP status codes.
 - ASP.NET Core `ProblemDetails`.
 - Validation problem responses.
 
-#### RxJS
+## W1D4-S4 — RxJS Foundations
 
 - Observable versus Promise.
-- Cold versus hot Observable.
+- Cold Observable.
+- Hot Observable.
 - Subscription lifecycle.
 - Async pipe.
 - Declarative subscription patterns.
+
+## W1D4-S5 — Core RxJS Operators
+
 - `map`.
 - `filter`.
 - `tap`.
-- `switchMap`.
-- `mergeMap`.
-- `concatMap`.
-- `exhaustMap`.
 - `debounceTime`.
 - `distinctUntilChanged`.
 - `catchError`.
 - `finalize`.
+
+## W1D4-S6 — RxJS Flattening Operators
+
+- `switchMap`.
+- `mergeMap`.
+- `concatMap`.
+- `exhaustMap`.
+
+## W1D4-S7 — Combining and Cancelling Streams
+
 - `combineLatest`.
 - `forkJoin`.
 - Request cancellation.
@@ -451,19 +543,26 @@ The learner can:
 - `takeUntilDestroyed`.
 - Signals and Observable interoperability.
 
-#### HTTP architecture
+## W1D4-S8 — HTTP Architecture and Server State
 
 - API service responsibilities.
 - Server state versus local UI state.
-- Loading, empty, success, and error states.
+- Loading states.
+- Empty states.
+- Success states.
+- Error states.
 - Global versus feature-specific error handling.
+
+## W1D4-S9 — Interceptors, Retry, and Optimistic Updates
+
 - Functional HTTP interceptors.
 - Correlation IDs.
 - Authentication-header awareness.
 - Retry only when safe.
-- Optimistic updates and rollback.
+- Optimistic updates.
+- Rollback.
 
-### Build
+## W1D4-S10 — Day 4 Build
 
 - API contract interfaces.
 - API client service.
@@ -473,7 +572,8 @@ The learner can:
 - Update an item.
 - Delete an item.
 - Search with debounce.
-- Filter and sort through query parameters.
+- Filter through query parameters.
+- Sort through query parameters.
 - Paginate server results.
 - Cancel stale search requests.
 - Display:
@@ -487,7 +587,7 @@ The learner can:
 - Add a functional interceptor.
 - Implement one optimistic update with rollback.
 
-### Interview preparation
+## W1D4-S11 — Day 4 Interview Preparation
 
 - Observable versus Promise.
 - Why Angular `HttpClient` uses Observables.
@@ -500,7 +600,7 @@ The learner can:
 - CORS versus authentication.
 - `400`, `401`, `403`, `404`, `409`, and `500`.
 
-### Completion check
+## W1D4-S12 — Day 4 Completion Check
 
 The learner can:
 
@@ -512,9 +612,9 @@ The learner can:
 
 ---
 
-## Day 5 — Typed Reactive Forms and Complex Validation
+# Day 5 — Typed Reactive Forms and Complex Validation
 
-### Learn
+## W1D5-S1 — Reactive Forms Mental Model
 
 - Reactive Forms mental model.
 - Typed forms.
@@ -523,32 +623,53 @@ The learner can:
 - `FormArray`.
 - `FormBuilder`.
 - Non-nullable controls.
+
+## W1D5-S2 — Nested and Dynamic Forms
+
 - Nested groups.
 - Dynamic collections.
+
+## W1D5-S3 — Validators
+
 - Built-in validators.
 - Custom validators.
 - Cross-field validators.
 - Async validators.
 - Conditional validation.
-- Form status:
-  - Pristine and dirty.
-  - Touched and untouched.
-  - Valid and invalid.
-  - Pending.
-- `setValue` versus `patchValue`.
+
+## W1D5-S4 — Form State
+
+- Pristine.
+- Dirty.
+- Touched.
+- Untouched.
+- Valid.
+- Invalid.
+- Pending.
+
+## W1D5-S5 — Form Data Operations
+
+- `setValue`.
+- `patchValue`.
 - Form submission.
 - Reset behavior.
 - Editing existing data.
+
+## W1D5-S6 — DTO Mapping and Backend Errors
+
 - Mapping DTOs to forms.
 - Mapping forms to request DTOs.
 - Mapping backend errors to fields.
 - Validation summaries.
 - Focusing the first invalid control.
 - Unsaved-change detection.
+
+## W1D5-S7 — Other Form Approaches
+
 - Comparison with template-driven forms.
 - Awareness of newer signal-based form approaches.
 
-### Build
+## W1D5-S8 — Day 5 Build
 
 Create a production-style form with:
 
@@ -559,7 +680,10 @@ Create a production-style form with:
 - Nested object.
 - Dynamic ingredient/task/item collection.
 - Dynamic step/sub-item collection.
-- Add, remove, edit, and reorder operations.
+- Add operations.
+- Remove operations.
+- Edit operations.
+- Reorder operations.
 - Custom cross-field rule.
 - Conditional field requirement.
 - Async uniqueness-validation example.
@@ -568,9 +692,10 @@ Create a production-style form with:
 - Backend validation mapping.
 - Validation summary.
 - Unsaved-change warning.
-- Accessible labels and error messages.
+- Accessible labels.
+- Accessible error messages.
 
-### Interview preparation
+## W1D5-S9 — Day 5 Interview Preparation
 
 - Reactive versus template-driven forms.
 - `FormGroup` versus `FormArray`.
@@ -581,7 +706,7 @@ Create a production-style form with:
 - How to model dynamic collections.
 - How to handle backend field errors.
 
-### Completion check
+## W1D5-S10 — Day 5 Completion Check
 
 The learner can:
 
@@ -592,11 +717,9 @@ The learner can:
 
 ---
 
-## Day 6 — Signals, RxJS, NgRx, and State Management
+# Day 6 — Signals, RxJS, NgRx, and State Management
 
-### Learn
-
-#### State classification
+## W1D6-S1 — State Classification
 
 - Local UI state.
 - Form state.
@@ -607,22 +730,30 @@ The learner can:
 - Shared feature state.
 - Global application state.
 
-#### Signals
+## W1D6-S2 — Signals Fundamentals
 
 - Writable signals.
-- Reading and setting signals.
+- Reading signals.
+- Setting signals.
 - Updating signals.
 - Computed signals.
+
+## W1D6-S3 — Effects and Derived State
+
 - Effects.
 - When not to use effects.
 - Derived state.
 - Signal equality awareness.
-- Signal inputs and model inputs awareness.
+
+## W1D6-S4 — Signals in Angular Architecture
+
+- Signal inputs awareness.
+- Model inputs awareness.
 - Signals and change detection.
 - Signals with RxJS.
 - Injectable signal-based stores.
 
-#### RxJS-based state
+## W1D6-S5 — RxJS-Based State
 
 - Subjects.
 - BehaviorSubject.
@@ -631,7 +762,7 @@ The learner can:
 - Combining streams.
 - Avoiding manual state synchronization.
 
-#### NgRx
+## W1D6-S6 — NgRx Fundamentals
 
 - When NgRx is justified.
 - Store.
@@ -641,11 +772,14 @@ The learner can:
 - Effects.
 - Entity-style state.
 - NgRx DevTools.
+
+## W1D6-S7 — Signal Store and State-Tool Selection
+
 - Signal Store.
 - NgRx Store versus Signal Store.
 - Avoiding global state for everything.
 
-### Build
+## W1D6-S8 — Day 6 Build
 
 Implement the same small feature three ways:
 
@@ -668,7 +802,7 @@ Also:
 - Keep server data separate from temporary UI state.
 - Inspect state changes with developer tools.
 
-### Interview preparation
+## W1D6-S9 — Day 6 Interview Preparation
 
 - Signal versus Observable.
 - Computed signal versus effect.
@@ -679,7 +813,7 @@ Also:
 - URL state versus in-memory state.
 - When Redux-style architecture is excessive.
 
-### Completion check
+## W1D6-S10 — Day 6 Completion Check
 
 The learner can:
 
@@ -690,33 +824,43 @@ The learner can:
 
 ---
 
-## Day 7 — Angular Authentication, Testing, Performance, and Production
+# Day 7 — Angular Authentication, Testing, Performance, and Production
 
-### Learn
-
-#### Authentication and authorization
+## W1D7-S1 — Authentication and Authorization Fundamentals
 
 - Authentication versus authorization.
 - Cookie-based sessions.
 - Bearer tokens.
 - JWT structure awareness.
-- Login and logout flow.
+- Login flow.
+- Logout flow.
+
+## W1D7-S2 — Token and Session Lifecycle
+
 - Access-token expiration.
 - Refresh-token concepts.
 - Safe token handling.
 - Why local storage may be inappropriate for sensitive tokens.
-- CSRF and XSS implications.
+- Session expiration.
+
+## W1D7-S3 — Security Concerns
+
+- CSRF implications.
+- XSS implications.
+- Why frontend guards do not secure the API.
+
+## W1D7-S4 — Angular Authentication Implementation
+
 - Authentication service.
 - Authentication state.
 - Functional auth interceptor.
 - Route guards.
-- Role and permission checks.
+- Role checks.
+- Permission checks.
 - `401 Unauthorized`.
 - `403 Forbidden`.
-- Session expiration.
-- Why frontend guards do not secure the API.
 
-#### Testing
+## W1D7-S5 — Angular Testing Fundamentals
 
 - Test pyramid.
 - Unit tests.
@@ -725,20 +869,25 @@ The learner can:
 - End-to-end tests.
 - Vitest.
 - Angular testing utilities.
+
+## W1D7-S6 — Testing Angular Features
+
 - Testing services.
 - Testing components.
 - Testing signals.
 - Testing forms.
 - Mocking HTTP.
 - Router tests.
-- Testing guards and interceptors.
+- Testing guards.
+- Testing interceptors.
 - Testing user-visible behavior.
 - Avoiding tests coupled to implementation details.
 
-#### Performance and production
+## W1D7-S7 — Angular Performance
 
 - Change detection.
-- Default versus `OnPush`.
+- Default change detection.
+- `OnPush`.
 - Signals and rendering.
 - Stable list tracking.
 - Lazy loading.
@@ -746,6 +895,9 @@ The learner can:
 - Avoiding unnecessary subscriptions.
 - Bundle analysis.
 - Angular DevTools.
+
+## W1D7-S8 — Angular Production Concerns
+
 - Production builds.
 - Environment configuration.
 - Source maps.
@@ -753,7 +905,7 @@ The learner can:
 - XSS protection.
 - Dependency auditing.
 
-### Build
+## W1D7-S9 — Day 7 Build
 
 - Login page.
 - Authentication service.
@@ -766,12 +918,13 @@ The learner can:
 - Component tests.
 - Form tests.
 - HTTP service tests.
-- Guard and interceptor tests.
+- Guard tests.
+- Interceptor tests.
 - One protected-route E2E test.
 - Production Angular build.
 - Performance inspection with Angular DevTools.
 
-### Interview preparation
+## W1D7-S10 — Day 7 Interview Preparation
 
 - Authentication versus authorization.
 - Cookie versus bearer token.
@@ -784,7 +937,7 @@ The learner can:
 - How to test an HTTP service.
 - How to diagnose a slow Angular page.
 
-### Week 1 deliverable
+## W1D7-S11 — Week 1 Deliverable
 
 A production-style Angular application containing:
 
@@ -792,7 +945,10 @@ A production-style Angular application containing:
 - CRUD.
 - Complex typed forms.
 - API integration.
-- Search, filtering, sorting, and pagination.
+- Search.
+- Filtering.
+- Sorting.
+- Pagination.
 - State management.
 - Authentication.
 - Protected routes.
@@ -805,19 +961,30 @@ A production-style Angular application containing:
 
 # Week 2 — React
 
-## Day 8 — React Setup, JSX, Components, and Composition
+# Day 8 — React Setup, JSX, Components, and Composition
 
-### Learn
+## W2D8-S1 — React Setup and Project Structure
 
 - React as a UI library.
 - Vite-based React setup.
 - Project structure.
-- JSX and TSX.
+- React DevTools.
+
+## W2D8-S2 — JSX and TSX
+
+- JSX.
+- TSX.
 - JSX expressions.
+
+## W2D8-S3 — Function Components and Props
+
 - Function components.
 - Props.
 - Prop typing.
 - `children`.
+
+## W2D8-S4 — Rendering and Composition
+
 - Component composition.
 - Conditional rendering.
 - Rendering lists.
@@ -825,12 +992,15 @@ A production-style Angular application containing:
 - Events.
 - Declarative rendering.
 - Immutability.
+
+## W2D8-S5 — Styling and Component Responsibilities
+
 - CSS approaches.
 - Component responsibility.
-- Presentational versus feature components.
-- React DevTools.
+- Presentational components.
+- Feature components.
 
-### Build
+## W2D8-S6 — Day 8 Build
 
 - Scaffold a React application.
 - Configure strict TypeScript.
@@ -848,7 +1018,7 @@ A production-style Angular application containing:
 - Emit behavior through callback props.
 - Use `children` for composition.
 
-### Blazor comparison
+## W2D8-S7 — React vs Blazor Mental Mapping
 
 - Razor component versus function component.
 - `[Parameter]` versus props.
@@ -857,7 +1027,7 @@ A production-style Angular application containing:
 - Component field versus React state.
 - Cascading values versus Context.
 
-### Interview preparation
+## W2D8-S8 — Day 8 Interview Preparation
 
 - React library versus framework.
 - Props versus state.
@@ -867,7 +1037,7 @@ A production-style Angular application containing:
 - Declarative versus imperative UI.
 - Why React state should be treated as immutable.
 
-### Completion check
+## W2D8-S9 — Day 8 Completion Check
 
 The learner can:
 
@@ -878,32 +1048,45 @@ The learner can:
 
 ---
 
-## Day 9 — State, Events, Rendering, and Controlled Inputs
+# Day 9 — State, Events, Rendering, and Controlled Inputs
 
-### Learn
+## W2D9-S1 — `useState` Fundamentals
 
 - `useState`.
 - Initial state.
 - State as a snapshot.
 - Functional state updates.
 - Batching.
+
+## W2D9-S2 — Events and Inputs
+
 - Event handlers.
 - Synthetic-event awareness.
 - Controlled inputs.
 - Uncontrolled-input awareness.
+
+## W2D9-S3 — State Ownership
+
 - Lifting state.
 - Single source of truth.
 - Derived state.
 - Avoiding redundant state.
+
+## W2D9-S4 — Immutable Updates
+
 - Immutable array updates.
 - Immutable object updates.
+
+## W2D9-S5 — React Rendering Model
+
 - Render phase.
 - Commit phase.
 - What causes a rerender.
-- Parent rerenders and child rerenders.
+- Parent rerenders.
+- Child rerenders.
 - Strict Mode development behavior.
 
-### Build
+## W2D9-S6 — Day 9 Build
 
 - Search field.
 - Filter controls.
@@ -912,11 +1095,13 @@ The learner can:
 - Modal or drawer state.
 - Controlled form fields.
 - Derived filtered list.
-- Immutable add, update, and remove operations.
+- Immutable add operations.
+- Immutable update operations.
+- Immutable remove operations.
 - State lifted to the correct owner.
 - Remove one redundant state variable.
 
-### Interview preparation
+## W2D9-S7 — Day 9 Interview Preparation
 
 - Props versus state.
 - State snapshot.
@@ -928,7 +1113,7 @@ The learner can:
 - Why derived values should usually be calculated during render.
 - What causes a React component to rerender.
 
-### Completion check
+## W2D9-S8 — Day 9 Completion Check
 
 The learner can:
 
@@ -939,11 +1124,9 @@ The learner can:
 
 ---
 
-## Day 10 — React Router, Component Architecture, and Custom Hooks
+# Day 10 — React Router, Component Architecture, and Custom Hooks
 
-### Learn
-
-#### Routing
+## W2D10-S1 — React Router Fundamentals
 
 - React Router setup.
 - Route configuration.
@@ -957,7 +1140,7 @@ The learner can:
 - Lazy-loaded routes.
 - URL state.
 
-#### Architecture
+## W2D10-S2 — React Frontend Architecture
 
 - Feature-based folders.
 - Pages versus components.
@@ -971,7 +1154,7 @@ The learner can:
 - Reusable component APIs.
 - Error boundaries.
 
-#### Custom hooks
+## W2D10-S3 — Custom Hooks
 
 - What a custom hook is.
 - Hook naming rules.
@@ -980,18 +1163,18 @@ The learner can:
 - Separating logic from presentation.
 - Avoiding overly generic hooks.
 
-### Build
+## W2D10-S4 — Day 10 Build
 
 Create routes:
 
-- `/`
-- `/items`
-- `/items/:id`
-- `/items/new`
-- `/items/:id/edit`
-- `/login`
-- `/protected`
-- `*` for not found
+- `/`.
+- `/items`.
+- `/items/:id`.
+- `/items/new`.
+- `/items/:id/edit`.
+- `/login`.
+- `/protected`.
+- `*` for not found.
 
 Also:
 
@@ -1003,7 +1186,7 @@ Also:
 - Extract a reusable search/filter hook.
 - Extract a browser-preference hook.
 
-### Interview preparation
+## W2D10-S5 — Day 10 Interview Preparation
 
 - React Router versus Next.js routing.
 - Route parameter versus search parameter.
@@ -1013,7 +1196,7 @@ Also:
 - Why hooks cannot be called conditionally.
 - Colocation versus a global utilities folder.
 
-### Completion check
+## W2D10-S6 — Day 10 Completion Check
 
 The learner can:
 
@@ -1023,47 +1206,63 @@ The learner can:
 
 ---
 
-## Day 11 — Effects, Refs, Closures, and External Synchronization
+# Day 11 — Effects, Refs, Closures, and External Synchronization
 
-### Learn
+## W2D11-S1 — Closures and Stale Closures
 
 - JavaScript closures.
 - Stale closures.
+
+## W2D11-S2 — `useEffect`
+
 - `useEffect`.
 - Effect dependencies.
 - Dependency-array rules.
 - Effect cleanup.
 - Synchronizing with external systems.
 - Why ordinary derived state does not need an effect.
+
+## W2D11-S3 — Async Work and Race Conditions
+
 - Fetching inside an effect.
 - Race conditions.
 - AbortController.
+
+## W2D11-S4 — External Side Effects
+
 - Event listeners.
 - Timers.
 - Subscriptions.
+
+## W2D11-S5 — Refs
+
 - `useRef`.
 - DOM refs.
 - Mutable values that do not trigger rendering.
 - Previous-value patterns.
 - `useLayoutEffect` awareness.
+
+## W2D11-S6 — Memoization
+
 - `useMemo`.
 - `useCallback`.
 - `memo`.
 - When memoization is unnecessary.
 - React Compiler awareness.
 
-### Build
+## W2D11-S7 — Day 11 Build
 
 - Synchronize a preference with browser storage.
 - Add and clean up a browser event listener.
 - Add and clean up a timer.
 - Cancel a stale request.
-- Demonstrate and fix a stale closure.
+- Demonstrate a stale closure.
+- Fix a stale closure.
 - Replace an unnecessary effect with derived rendering.
 - Use a ref to focus an invalid input.
 - Profile before and after one memoization decision.
 
-### Interview preparation
+## W2D11-S8 — Day 11 Interview Preparation
 
 - What belongs in an effect.
 - Why effects run more than expected.
@@ -1075,7 +1274,7 @@ The learner can:
 - Why memoization can make code worse.
 - Why effects should not orchestrate all application state.
 
-### Completion check
+## W2D11-S9 — Day 11 Completion Check
 
 The learner can:
 
@@ -1086,30 +1285,44 @@ The learner can:
 
 ---
 
-## Day 12 — Forms, Reducers, Dynamic Collections, and Validation
+# Day 12 — Forms, Reducers, Dynamic Collections, and Validation
 
-### Learn
+## W2D12-S1 — React Form Fundamentals
 
 - Controlled forms.
 - Form submission.
 - Complex object state.
+
+## W2D12-S2 — Reducers
+
 - `useReducer`.
 - Reducer actions.
 - Reducer purity.
+
+## W2D12-S3 — Dynamic Collections and Immutable Updates
+
 - Dynamic arrays.
 - Immutable nested updates.
+
+## W2D12-S4 — Validation
+
 - Field-level validation.
 - Form-level validation.
 - Cross-field validation.
-- Touched and dirty state.
+- Touched state.
+- Dirty state.
 - Validation summaries.
 - Server-validation mapping.
 - Focus management.
+
+## W2D12-S5 — Form Libraries
+
 - React Hook Form awareness.
 - Schema-validation awareness.
-- Controlled versus uncontrolled form-library strategies.
+- Controlled form-library strategies.
+- Uncontrolled form-library strategies.
 
-### Build
+## W2D12-S6 — Day 12 Build
 
 Create a complex form containing:
 
@@ -1118,7 +1331,10 @@ Create a complex form containing:
 - Nested source/contact object.
 - Dynamic ingredient/task/item collection.
 - Dynamic steps/sub-items.
-- Add, remove, edit, and reorder actions.
+- Add actions.
+- Remove actions.
+- Edit actions.
+- Reorder actions.
 - Conditional field.
 - Cross-field rule.
 - Create mode.
@@ -1137,7 +1353,7 @@ Then recreate a small portion using:
 
 - React Hook Form or an equivalent form-library exercise.
 
-### Interview preparation
+## W2D12-S7 — Day 12 Interview Preparation
 
 - `useState` versus `useReducer`.
 - Reducer purity.
@@ -1148,7 +1364,7 @@ Then recreate a small portion using:
 - Dynamic-array field management.
 - Why a reducer can make complex forms easier to reason about.
 
-### Completion check
+## W2D12-S8 — Day 12 Completion Check
 
 The learner can:
 
@@ -1158,11 +1374,9 @@ The learner can:
 
 ---
 
-## Day 13 — API Integration, Server State, Context, Redux, and Authentication
+# Day 13 — API Integration, Server State, Context, Redux, and Authentication
 
-### Learn
-
-#### API integration
+## W2D13-S1 — React API Integration
 
 - `fetch`.
 - Typed API clients.
@@ -1170,7 +1384,13 @@ The learner can:
 - AbortController.
 - Error normalization.
 - `ProblemDetails`.
-- Loading, empty, success, and error states.
+
+## W2D13-S2 — Server-State Patterns
+
+- Loading state.
+- Empty state.
+- Success state.
+- Error state.
 - Pagination.
 - Search.
 - Filtering.
@@ -1179,17 +1399,22 @@ The learner can:
 - Retry policy.
 - Cache invalidation.
 - Server state versus client state.
-- Server-state-library awareness:
-  - RTK Query.
-  - Query-library concepts.
 
-#### Shared state
+## W2D13-S3 — Server-State Library Awareness
+
+- RTK Query.
+- Query-library concepts.
+
+## W2D13-S4 — Context
 
 - Context.
 - Context provider.
 - Context consumption.
 - Context rerender considerations.
 - Reducer plus Context.
+
+## W2D13-S5 — Redux Toolkit
+
 - Redux concepts.
 - Redux Toolkit.
 - Store configuration.
@@ -1200,27 +1425,37 @@ The learner can:
 - Middleware.
 - Async thunks.
 - Redux DevTools.
+
+## W2D13-S6 — RTK Query and State-Tool Selection
+
 - RTK Query.
 - When Redux is justified.
 - When Context is enough.
 
-#### Authentication
+## W2D13-S7 — React Authentication
 
-- Login and logout.
+- Login.
+- Logout.
 - Authentication context.
 - Cookie versus bearer token.
 - Protected routes.
 - Permission-based UI.
-- `401` and `403`.
+- `401`.
+- `403`.
 - Token-expiration handling.
 - Refresh concepts.
-- CSRF and XSS implications.
+- CSRF implications.
+- XSS implications.
 - Why frontend authorization checks are not security.
 
-### Build
+## W2D13-S8 — Day 13 Build
 
 - API client.
-- List/detail/create/update/delete.
+- List.
+- Detail.
+- Create.
+- Update.
+- Delete.
 - Paginated search.
 - Request cancellation.
 - Error normalization.
@@ -1234,7 +1469,7 @@ The learner can:
 - Small RTK Query exercise.
 - Compare Context and Redux implementations.
 
-### Interview preparation
+## W2D13-S9 — Day 13 Interview Preparation
 
 - Context versus Redux.
 - Redux Toolkit versus raw Redux.
@@ -1246,7 +1481,7 @@ The learner can:
 - Optimistic-update rollback.
 - Cache invalidation.
 
-### Completion check
+## W2D13-S10 — Day 13 Completion Check
 
 The learner can:
 
@@ -1258,11 +1493,9 @@ The learner can:
 
 ---
 
-## Day 14 — React Testing, Performance, Accessibility, Security, and Production
+# Day 14 — React Testing, Performance, Accessibility, Security, and Production
 
-### Learn
-
-#### Testing
+## W2D14-S1 — React Testing Foundations
 
 - Unit tests.
 - Component tests.
@@ -1271,6 +1504,9 @@ The learner can:
 - Vitest.
 - React Testing Library.
 - User-event testing.
+
+## W2D14-S2 — Testing React Features
+
 - Mocking API requests.
 - Testing Context.
 - Testing reducers.
@@ -1280,7 +1516,7 @@ The learner can:
 - Playwright.
 - Avoiding implementation-detail tests.
 
-#### Performance
+## W2D14-S3 — React Performance
 
 - React Profiler.
 - Rerender diagnosis.
@@ -1295,7 +1531,7 @@ The learner can:
 - Bundle analysis.
 - Avoiding large client dependencies.
 
-#### Accessibility and security
+## W2D14-S4 — Accessibility
 
 - Semantic HTML.
 - Keyboard navigation.
@@ -1304,6 +1540,9 @@ The learner can:
 - Form labels.
 - Error announcements.
 - Modal accessibility.
+
+## W2D14-S5 — Frontend Security
+
 - XSS.
 - Unsafe HTML.
 - URL validation.
@@ -1311,7 +1550,7 @@ The learner can:
 - Environment variables.
 - Dependency auditing.
 
-#### Production
+## W2D14-S6 — React Production Concerns
 
 - Vite production build.
 - Environment files.
@@ -1322,7 +1561,7 @@ The learner can:
 - SPA hosting.
 - Rewrite rules for client routing.
 
-### Build
+## W2D14-S7 — Day 14 Build
 
 - Reducer tests.
 - Component tests.
@@ -1338,7 +1577,7 @@ The learner can:
 - Create a production build.
 - Document deployment requirements.
 
-### Interview preparation
+## W2D14-S8 — Day 14 Interview Preparation
 
 - Unit versus integration versus E2E.
 - React Testing Library philosophy.
@@ -1350,7 +1589,7 @@ The learner can:
 - How a React SPA is deployed.
 - How to debug a production-only issue.
 
-### Week 2 deliverable
+## W2D14-S9 — Week 2 Deliverable
 
 A production-style React SPA containing:
 
@@ -1358,7 +1597,10 @@ A production-style React SPA containing:
 - CRUD.
 - Complex forms.
 - API integration.
-- Search, filtering, sorting, and pagination.
+- Search.
+- Filtering.
+- Sorting.
+- Pagination.
 - Context.
 - Redux Toolkit exercise.
 - Authentication.
@@ -1371,46 +1613,64 @@ A production-style React SPA containing:
 
 # Week 3 — Next.js and Production Frontend Engineering
 
-## Day 15 — Next.js App Router, Project Structure, and Routing
+# Day 15 — Next.js App Router, Project Structure, and Routing
 
-### Learn
+## W3D15-S1 — Next.js Purpose and Project Structure
 
 - Why Next.js exists.
 - React versus Next.js.
 - App Router.
 - Project structure.
 - `app` directory.
+
+## W3D15-S2 — Pages and Layouts
+
 - Pages.
 - Layouts.
 - Nested layouts.
 - Route groups.
+
+## W3D15-S3 — Routing
+
 - Dynamic segments.
 - Catch-all segments.
 - Search parameters.
 - Navigation.
+
+## W3D15-S4 — Route UI Boundaries
+
 - Loading UI.
 - Error UI.
 - Not-found UI.
+
+## W3D15-S5 — Metadata and Assets
+
 - Metadata.
 - Static assets.
-- Fonts and image awareness.
-- Environment variables.
-- Server-only versus public variables.
-- Development and production commands.
+- Fonts awareness.
+- Image awareness.
 
-### Build
+## W3D15-S6 — Environment and Commands
+
+- Environment variables.
+- Server-only variables.
+- Public variables.
+- Development commands.
+- Production commands.
+
+## W3D15-S7 — Day 15 Build
 
 - Scaffold a Next.js application.
 - Create root layout.
 - Create feature layout.
 - Add routes:
-  - `/`
-  - `/items`
-  - `/items/[id]`
-  - `/items/new`
-  - `/items/[id]/edit`
-  - `/login`
-  - `/protected`
+  - `/`.
+  - `/items`.
+  - `/items/[id]`.
+  - `/items/new`.
+  - `/items/[id]/edit`.
+  - `/login`.
+  - `/protected`.
 - Add loading UI.
 - Add error UI.
 - Add not-found handling.
@@ -1418,7 +1678,7 @@ A production-style React SPA containing:
 - Add navigation.
 - Read search parameters.
 
-### Interview preparation
+## W3D15-S8 — Day 15 Interview Preparation
 
 - React versus Next.js.
 - App Router versus React Router.
@@ -1429,7 +1689,7 @@ A production-style React SPA containing:
 - Public versus server-only environment variable.
 - Why Next.js requires deployment choices different from a static SPA.
 
-### Completion check
+## W3D15-S9 — Day 15 Completion Check
 
 The learner can:
 
@@ -1439,32 +1699,49 @@ The learner can:
 
 ---
 
-## Day 16 — Server Components, Client Components, Rendering, and Hydration
+# Day 16 — Server Components, Client Components, Rendering, and Hydration
 
-### Learn
+## W3D16-S1 — Server and Client Components
 
 - Server Components.
 - Client Components.
 - Default component type.
 - `"use client"`.
+
+## W3D16-S2 — Client Boundary Design
+
 - Client-boundary placement.
 - Serializable props.
 - Server/client composition.
+
+## W3D16-S3 — Hydration and Streaming
+
 - Hydration.
-- What is and is not hydrated.
+- What is hydrated.
+- What is not hydrated.
 - Streaming.
 - Suspense.
+
+## W3D16-S4 — Rendering Modes
+
 - Static rendering.
 - Dynamic rendering.
 - Request-time rendering.
 - Prerendering.
+
+## W3D16-S5 — Environment Boundaries
+
 - Browser-only APIs.
 - Server-only modules.
 - Avoiding secrets in the client bundle.
-- Bundle-size implications.
-- SEO and metadata implications.
 
-### Build
+## W3D16-S6 — Performance and SEO Implications
+
+- Bundle-size implications.
+- SEO implications.
+- Metadata implications.
+
+## W3D16-S7 — Day 16 Build
 
 - Server-rendered list page.
 - Server-rendered details page.
@@ -1475,9 +1752,10 @@ The learner can:
 - Streaming loading state.
 - Browser-only component.
 - Narrow a client boundary that was initially too broad.
-- Verify which code executes on the server and which executes in the browser.
+- Verify which code executes on the server.
+- Verify which code executes in the browser.
 
-### Interview preparation
+## W3D16-S8 — Day 16 Interview Preparation
 
 - Server Component versus Client Component.
 - What `"use client"` actually marks.
@@ -1489,7 +1767,7 @@ The learner can:
 - SSR versus Server Components.
 - Static versus dynamic rendering.
 
-### Completion check
+## W3D16-S9 — Day 16 Completion Check
 
 The learner can:
 
@@ -1499,54 +1777,75 @@ The learner can:
 
 ---
 
-## Day 17 — Next.js Data Fetching, Caching, Mutations, and Backend Patterns
+# Day 17 — Next.js Data Fetching, Caching, Mutations, and Backend Patterns
 
-### Learn
+## W3D17-S1 — Data Fetching
 
 - Fetching in Server Components.
 - Fetching in Client Components.
 - Calling the ASP.NET Core API from server code.
 - Request deduplication concepts.
+
+## W3D17-S2 — Caching and Revalidation
+
 - Caching.
 - Dynamic data.
 - Revalidation.
-- Tag- and path-based invalidation concepts.
+- Tag-based invalidation concepts.
+- Path-based invalidation concepts.
+
+## W3D17-S3 — Mutations
+
 - Mutations.
 - Server Actions.
 - Client-side mutations.
+- Redirects.
+- Optimistic UI.
+
+## W3D17-S4 — Route Handlers and Backend Patterns
+
 - Route Handlers.
 - Backend-for-frontend pattern.
 - Proxying to an external API.
 - Error propagation.
 - `ProblemDetails`.
-- Redirects.
-- Optimistic UI.
+
+## W3D17-S5 — URL State and Data Operations
+
 - Search parameters as state.
 - Pagination.
 - Filtering.
 - Sorting.
 - API contract reuse.
+
+## W3D17-S6 — Database and Architecture Options
+
 - Direct database access as an architectural option.
 - Why this course keeps the shared ASP.NET Core API as the primary backend.
 
-### Build
+## W3D17-S7 — Day 17 Build
 
 - Server-side list fetch.
 - Server-side detail fetch.
 - Client-side mutation.
 - One Server Action exercise.
 - One Route Handler exercise.
-- Search and pagination through URL parameters.
-- Create/update/delete flow.
+- Search through URL parameters.
+- Pagination through URL parameters.
+- Create flow.
+- Update flow.
+- Delete flow.
 - Revalidation after mutation.
 - Error translation.
 - Optimistic UI example.
-- Compare:
-  - Browser → ASP.NET Core API.
-  - Next.js server → ASP.NET Core API.
-  - Browser → Route Handler → ASP.NET Core API.
 
-### Interview preparation
+Compare:
+
+- Browser → ASP.NET Core API.
+- Next.js server → ASP.NET Core API.
+- Browser → Route Handler → ASP.NET Core API.
+
+## W3D17-S8 — Day 17 Interview Preparation
 
 - Server Action versus Route Handler.
 - Route Handler versus ASP.NET Core endpoint.
@@ -1556,9 +1855,10 @@ The learner can:
 - URL state.
 - Backend-for-frontend.
 - Why server state should not automatically be copied into global client state.
-- When direct database access from Next.js is appropriate or inappropriate.
+- When direct database access from Next.js is appropriate.
+- When direct database access from Next.js is inappropriate.
 
-### Completion check
+## W3D17-S9 — Day 17 Completion Check
 
 The learner can:
 
@@ -1568,30 +1868,44 @@ The learner can:
 
 ---
 
-## Day 18 — Authentication and Authorization Across Angular, React, and Next.js
+# Day 18 — Authentication and Authorization Across Angular, React, and Next.js
 
-### Learn
-
-#### Core security model
+## W3D18-S1 — Core Authentication Model
 
 - Authentication versus authorization.
 - Session-based authentication.
 - Cookie-based authentication.
 - Bearer tokens.
-- JWT structure and limitations.
-- Access and refresh tokens.
+- JWT structure.
+- JWT limitations.
+
+## W3D18-S2 — Token and Session Lifecycle
+
+- Access tokens.
+- Refresh tokens.
 - Token expiry.
 - Session expiry.
-- Secure, HttpOnly, SameSite cookies.
+- Logout.
+
+## W3D18-S3 — Cookie Security
+
+- Secure cookies.
+- HttpOnly cookies.
+- SameSite cookies.
+
+## W3D18-S4 — Web Security Around Authentication
+
 - CSRF.
 - XSS.
 - CORS.
-- Logout.
-- Role-based authorization.
-- Permission-based authorization.
 - UI hiding versus real API enforcement.
 
-#### Angular
+## W3D18-S5 — Authorization Models
+
+- Role-based authorization.
+- Permission-based authorization.
+
+## W3D18-S6 — Angular Authentication
 
 - Authentication service.
 - Auth signal/store.
@@ -1600,7 +1914,7 @@ The learner can:
 - `401` handling.
 - Refresh/session-renewal concepts.
 
-#### React SPA
+## W3D18-S7 — React SPA Authentication
 
 - Authentication provider.
 - Protected React Router route.
@@ -1608,7 +1922,7 @@ The learner can:
 - Permission-aware components.
 - Session-expiration handling.
 
-#### Next.js
+## W3D18-S8 — Next.js Authentication
 
 - Server-side session access.
 - Protected Server Component.
@@ -1619,7 +1933,7 @@ The learner can:
 - Client authentication state only where needed.
 - Preventing server-only session data from leaking into client components.
 
-### Build
+## W3D18-S9 — Day 18 Build
 
 Implement a coherent mock or real authentication flow:
 
@@ -1636,7 +1950,7 @@ Implement a coherent mock or real authentication flow:
 - One protected-route E2E test per frontend.
 - Verify that direct API access is also protected.
 
-### Interview preparation
+## W3D18-S10 — Day 18 Interview Preparation
 
 - Authentication versus authorization.
 - Cookie versus bearer token.
@@ -1646,9 +1960,10 @@ Implement a coherent mock or real authentication flow:
 - Route guard versus backend security.
 - Middleware versus Server Component authorization.
 - Why authentication state should not blindly be duplicated everywhere.
-- How logout and session expiration should behave.
+- How logout should behave.
+- How session expiration should behave.
 
-### Completion check
+## W3D18-S11 — Day 18 Completion Check
 
 The learner can:
 
@@ -1658,11 +1973,9 @@ The learner can:
 
 ---
 
-## Day 19 — Localization, Accessibility, Files, Images, Live Preview, and PDF
+# Day 19 — Localization, Accessibility, Files, Images, Live Preview, and PDF
 
-### Learn
-
-#### Localization
+## W3D19-S1 — Localization Fundamentals
 
 - UI language.
 - Stored-content language.
@@ -1670,12 +1983,13 @@ The learner can:
 - Translation-resource organization.
 - Locale switching.
 - Persisting locale.
-- Date and number formatting.
+- Date formatting.
+- Number formatting.
 - Right-to-left awareness.
 - Localized validation.
 - Avoiding hard-coded UI text.
 
-#### Accessibility
+## W3D19-S2 — Accessibility Fundamentals
 
 - Semantic HTML.
 - Keyboard navigation.
@@ -1684,29 +1998,37 @@ The learner can:
 - Accessible names.
 - ARIA only when necessary.
 - Dynamic validation announcements.
+
+## W3D19-S3 — Accessibility for Complex UI
+
 - Accessible modals.
 - Accessible drag/reordering alternatives.
 - Color contrast.
 - Reduced-motion awareness.
 
-#### Files and images
+## W3D19-S4 — Files and Images
 
 - File input.
 - File metadata.
 - Client-side preview.
-- Object URLs and cleanup.
+- Object URLs.
+- Object URL cleanup.
 - Image URL versus file upload.
 - Multipart form data.
 - Upload progress.
-- File-size and type validation.
+- File-size validation.
+- File-type validation.
 - Backend storage options.
 - Security limitations of client-side file checks.
 - Image optimization awareness.
 
-#### Live preview and PDF
+## W3D19-S5 — Live Preview
 
 - Derived preview state.
 - Configuration-driven rendering.
+
+## W3D19-S6 — Print and PDF
+
 - Print-specific CSS.
 - Page size.
 - Page breaks.
@@ -1719,13 +2041,14 @@ The learner can:
 - Object URLs for downloads.
 - Template security.
 
-### Build
+## W3D19-S7 — Day 19 Build
 
 - Language selector.
 - At least two UI languages.
 - Separate content/output-language concept.
 - Localized built-in messages.
-- Accessible form and validation summary.
+- Accessible form.
+- Validation summary.
 - Keyboard-operable dynamic collection.
 - Image preview.
 - File-validation feedback.
@@ -1734,9 +2057,10 @@ The learner can:
 - Print-friendly route.
 - Browser Save as PDF.
 - Binary-download exercise.
-- Meaningful document title and filename.
+- Meaningful document title.
+- Meaningful filename.
 
-### Interview preparation
+## W3D19-S8 — Day 19 Interview Preparation
 
 - Localization versus translating stored content.
 - Accessibility responsibilities of frontend developers.
@@ -1747,7 +2071,7 @@ The learner can:
 - Binary-response handling.
 - Security risks of user-authored HTML and CSS.
 
-### Completion check
+## W3D19-S9 — Day 19 Completion Check
 
 The learner can:
 
@@ -1758,11 +2082,9 @@ The learner can:
 
 ---
 
-## Day 20 — Testing, Debugging, Performance, CI, and Deployment
+# Day 20 — Testing, Debugging, Performance, CI, and Deployment
 
-### Learn
-
-#### Cross-framework testing
+## W3D20-S1 — Cross-Framework Testing
 
 - Unit testing.
 - Component testing.
@@ -1776,15 +2098,19 @@ The learner can:
 - Visual-regression awareness.
 - Flaky-test prevention.
 
-#### Debugging
+## W3D20-S2 — Browser Debugging
 
 - Browser DevTools.
 - Network tab.
 - Console.
-- Sources and breakpoints.
+- Sources.
+- Breakpoints.
 - Source maps.
 - Performance panel.
 - Memory awareness.
+
+## W3D20-S3 — Framework Debugging
+
 - Angular DevTools.
 - React DevTools.
 - React Profiler.
@@ -1792,7 +2118,7 @@ The learner can:
 - Correlation IDs.
 - Debugging server/client boundary issues.
 
-#### Performance
+## W3D20-S4 — Performance Fundamentals
 
 - Measuring before optimizing.
 - Angular change detection.
@@ -1802,6 +2128,9 @@ The learner can:
 - State colocation.
 - Memoization.
 - Next.js client-boundary size.
+
+## W3D20-S5 — Performance Techniques
+
 - Lazy loading.
 - Code splitting.
 - Bundle analysis.
@@ -1810,7 +2139,7 @@ The learner can:
 - Web-performance metrics awareness.
 - Virtualization awareness.
 
-#### CI and code quality
+## W3D20-S6 — CI and Code Quality
 
 - Type checking.
 - Linting.
@@ -1824,7 +2153,7 @@ The learner can:
 - Build artifacts.
 - Environment configuration.
 
-#### Deployment
+## W3D20-S7 — Deployment
 
 - Angular static-SPA deployment.
 - React static-SPA deployment.
@@ -1840,12 +2169,13 @@ The learner can:
 - Rollback concepts.
 - Release verification.
 
-### Build
+## W3D20-S8 — Day 20 Build
 
 - Complete production builds for all frontends.
 - Run type checking.
 - Run linting.
-- Run unit and component tests.
+- Run unit tests.
+- Run component tests.
 - Run E2E tests.
 - Add CI workflow.
 - Add accessibility check.
@@ -1859,7 +2189,7 @@ The learner can:
 - Document deployment architecture.
 - Create a production-release checklist.
 
-### Interview preparation
+## W3D20-S9 — Day 20 Interview Preparation
 
 - Unit versus integration versus E2E.
 - Testing pyramid limitations.
@@ -1874,7 +2204,7 @@ The learner can:
 - Production CORS.
 - Logging and monitoring strategy.
 
-### Completion check
+## W3D20-S10 — Day 20 Completion Check
 
 The learner can:
 
@@ -1885,12 +2215,11 @@ The learner can:
 
 ---
 
-## Day 21 — Capstone, Code Review, Architecture, and Interview Bootcamp
+# Day 21 — Capstone, Code Review, Architecture, and Interview Bootcamp
 
-### Part 1 — Independent capstone
+## W3D21-S1 — Independent Capstone
 
-Implement one unfamiliar feature in all relevant frontends without a prepared
-solution.
+Implement one unfamiliar feature in all relevant frontends without a prepared solution.
 
 Possible features:
 
@@ -1912,14 +2241,15 @@ Requirements:
 - Next.js implementation where appropriate.
 - API integration.
 - Authentication or permission handling where applicable.
-- Loading and error states.
+- Loading states.
+- Error states.
 - Accessibility.
 - Unit or component tests.
 - E2E coverage for the main path.
 - Production builds.
 - Diff review.
 
-### Part 2 — Code-review exercise
+## W3D21-S2 — Code Review Exercise
 
 Review code containing intentional issues:
 
@@ -1945,7 +2275,7 @@ Explain:
 - How to fix it.
 - How to test the correction.
 
-### Part 3 — Architecture comparison
+## W3D21-S3 — Architecture Comparison
 
 Explain the same feature in:
 
@@ -1967,7 +2297,7 @@ Compare:
 - Performance.
 - Deployment.
 
-### Part 4 — Angular interview round
+## W3D21-S4 — Angular Interview Round
 
 Cover:
 
@@ -1994,7 +2324,7 @@ Cover:
 - Testing.
 - Performance.
 
-### Part 5 — React interview round
+## W3D21-S5 — React Interview Round
 
 Cover:
 
@@ -2019,7 +2349,7 @@ Cover:
 - Testing.
 - Performance.
 
-### Part 6 — Next.js interview round
+## W3D21-S6 — Next.js Interview Round
 
 Cover:
 
@@ -2031,7 +2361,8 @@ Cover:
 - `"use client"`.
 - Hydration.
 - Streaming.
-- Static and dynamic rendering.
+- Static rendering.
+- Dynamic rendering.
 - Data fetching.
 - Caching.
 - Revalidation.
@@ -2040,10 +2371,11 @@ Cover:
 - Authentication.
 - Middleware.
 - Environment variables.
-- Error and loading boundaries.
+- Error boundaries.
+- Loading boundaries.
 - Deployment.
 
-### Part 7 — Practical interview exercises
+## W3D21-S7 — Practical Interview Exercises
 
 - Build a small reusable component.
 - Implement a dynamic form section.
@@ -2059,15 +2391,17 @@ Cover:
 - Review a rendering-performance problem.
 - Explain the complete system architecture.
 
-### Final architecture explanation
+## W3D21-S8 — Final Architecture Explanation
 
 Be able to explain:
 
+```text
 Browser
 → Angular, React SPA, or Next.js
 → ASP.NET Core API
 → EF Core
 → Database
+```
 
 Also explain:
 
@@ -2082,37 +2416,70 @@ Also explain:
 
 ---
 
-# Definition of Completion
+# Final Definition of Completion
+
+## FC-S1 — Application Skills
 
 The course is complete only when the learner can:
 
-- Run Angular, React, Next.js, and the API locally.
+- Run Angular locally.
+- Run React locally.
+- Run Next.js locally.
+- Run the API locally.
 - Explain each frontend project structure.
 - Create and route a new feature.
 - Build reusable components.
 - Build complex dynamic forms.
 - Consume and debug an API.
-- Implement loading, empty, success, and error states.
-- Implement login, logout, and protected routes.
-- Explain cookie and bearer-token authentication.
+- Implement loading states.
+- Implement empty states.
+- Implement success states.
+- Implement error states.
+
+## FC-S2 — Authentication and State Skills
+
+The learner can:
+
+- Implement login.
+- Implement logout.
+- Implement protected routes.
+- Explain cookie authentication.
+- Explain bearer-token authentication.
 - Select an appropriate state-management strategy.
-- Use Angular signals and RxJS.
-- Use React hooks, Context, and reducers.
-- Explain NgRx and Redux Toolkit.
-- Understand Server and Client Components.
-- Write meaningful unit, component, integration, and E2E tests.
+- Use Angular signals.
+- Use RxJS.
+- Use React hooks.
+- Use React Context.
+- Use reducers.
+- Explain NgRx.
+- Explain Redux Toolkit.
+- Understand Server Components.
+- Understand Client Components.
+
+## FC-S3 — Quality and Production Skills
+
+The learner can:
+
+- Write meaningful unit tests.
+- Write meaningful component tests.
+- Write meaningful integration tests.
+- Write meaningful E2E tests.
 - Identify accessibility problems.
 - Identify common frontend-security problems.
-- Diagnose unnecessary renders and subscriptions.
+- Diagnose unnecessary renders.
+- Diagnose unnecessary subscriptions.
 - Build production versions of every frontend.
 - Explain deployment differences.
 - Pass framework-specific mock interviews.
 - Implement a small feature with limited guidance.
 
+---
+
 # Topics Covered but Not Deeply Implemented
 
-These topics are included for production and interview awareness but do not
-require expert-level implementation during the three weeks:
+## TA-S1 — Legacy and Advanced Topics
+
+These topics are included for production and interview awareness but do not require expert-level implementation during the three weeks:
 
 - Legacy Angular NgModule-heavy architecture.
 - Legacy React class components.
@@ -2125,7 +2492,11 @@ require expert-level implementation during the three weeks:
 - Full drag-and-drop visual page builders.
 - Advanced visual-regression infrastructure.
 
+---
+
 # Daily Progress Tracking
+
+## PT-S1 — PROGRESS.md
 
 After every day, update `docs/course/PROGRESS.md` with:
 
@@ -2137,6 +2508,8 @@ After every day, update `docs/course/PROGRESS.md` with:
 - Problems encountered.
 - Topics requiring revision.
 - Next implementation task.
+
+## PT-S2 — NOTES.md
 
 Record detailed explanations and personal notes in:
 
