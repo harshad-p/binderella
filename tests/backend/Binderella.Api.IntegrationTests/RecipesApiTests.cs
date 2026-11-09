@@ -30,6 +30,8 @@ public sealed class RecipesApiTests
 
         Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         var recipe = await ReadRecipe(response);
+        Assert.True(recipe.ContainsKey("image"));
+        Assert.Null(recipe["image"]);
         Assert.NotEqual(Guid.Empty, recipe["id"]!.GetValue<Guid>());
         var itemIds = recipe["ingredients"]!.AsArray().Concat(recipe["steps"]!.AsArray())
             .Select(item => item!["id"]!.GetValue<Guid>()).ToArray();
@@ -65,6 +67,8 @@ public sealed class RecipesApiTests
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         var retrievedRecipe = await ReadRecipe(response);
+        Assert.True(retrievedRecipe.ContainsKey("image"));
+        Assert.Null(retrievedRecipe["image"]);
         Assert.Equal(postedRecipe["id"]!.GetValue<Guid>(), retrievedRecipe["id"]!.GetValue<Guid>());
         Assert.True(JsonNode.DeepEquals(postedRecipe, retrievedRecipe));
     }
@@ -182,7 +186,6 @@ public sealed class RecipesApiTests
     private static JsonObject ValidRecipe() => JsonNode.Parse("""
         {
           "title": "Chicken Masala",
-          "imageUrl": "https://example.com/recipe.jpg",
           "languageCode": "en",
           "source": {
             "type": "YouTubeChannel",

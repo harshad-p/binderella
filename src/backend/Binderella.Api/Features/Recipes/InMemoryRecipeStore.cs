@@ -13,7 +13,6 @@ public sealed class InMemoryRecipeStore : IRecipeStore
         var recipe = new StoredRecipe(
             Guid.NewGuid(),
             request.Title,
-            request.ImageUrl,
             request.LanguageCode,
             request.Source is null ? null : new StoredSource(
                 request.Source.Type, request.Source.Name, request.Source.Url),
@@ -40,7 +39,7 @@ public sealed class InMemoryRecipeStore : IRecipeStore
     {
         Id = recipe.Id,
         Title = recipe.Title,
-        ImageUrl = recipe.ImageUrl,
+        Image = null,
         LanguageCode = recipe.LanguageCode,
         Source = recipe.Source is null ? null : new RecipeSourceResponse
         {
@@ -72,7 +71,7 @@ public sealed class InMemoryRecipeStore : IRecipeStore
 
     // Snapshots copy request data; no request or response DTO is retained in storage.
     private sealed record StoredRecipe(
-        Guid Id, string Title, string? ImageUrl, string LanguageCode,
+        Guid Id, string Title, string LanguageCode,
         StoredSource? Source, StoredIngredient[] Ingredients, StoredStep[] Steps,
         StoredClosingMessage ClosingMessage, DateTimeOffset CreatedAtUtc, DateTimeOffset UpdatedAtUtc);
 

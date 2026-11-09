@@ -21,6 +21,7 @@ First Recipe API vertical slice
 - [x] GET /api/recipes/{id} implemented
 - [x] Temporary in-memory recipe store implemented
 - [x] First Recipe API integration tests added
+- [x] Recipe contract prepared for uploaded images
 
 # Current Task
 
@@ -29,6 +30,7 @@ persistent storage.
 
 # Not Started
 
+- Image upload and storage remain deferred
 - Database
 - Blazor frontend
 - Angular frontend

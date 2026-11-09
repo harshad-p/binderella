@@ -11,8 +11,6 @@ public sealed class UpdateRecipeRequest
     [MaxLength(200)]
     public string Title { get; set; } = string.Empty;
 
-    public string? ImageUrl { get; set; }
-
     [Required]
     public string LanguageCode { get; set; } = string.Empty;
 

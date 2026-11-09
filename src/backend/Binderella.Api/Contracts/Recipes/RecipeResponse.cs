@@ -6,7 +6,7 @@ public sealed class RecipeResponse
 
     public string Title { get; set; } = string.Empty;
 
-    public string? ImageUrl { get; set; }
+    public RecipeImageResponse? Image { get; set; }
 
     public string LanguageCode { get; set; } = string.Empty;
 
