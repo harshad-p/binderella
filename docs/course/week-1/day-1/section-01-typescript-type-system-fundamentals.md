@@ -239,7 +239,7 @@ One important distinction: `number | string` is a union type, meaning the variab
 
 We'll explore unions more deeply later in this section.
 
-# 3. Primitive types
+## 3. Primitive types
 
 TypeScript has several primitive types:
 
