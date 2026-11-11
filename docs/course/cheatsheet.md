@@ -15,3 +15,4 @@
 - Unlike any, unknown forces us to verify the value before accessing its properties.
 - The type predicate doesn’t automatically validate anything. Our implementation must actually perform the checks.
 - `never` represents a value that should be impossible.
+- Interfaces disappear completely when TypeScript is compiled.
